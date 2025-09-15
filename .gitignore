@@ -53,6 +53,9 @@
 *.swp
 *~
 
+PROJECT_STATUS.md
+ROADMAP.md
+
 # Ignore Byebug history
 .byebug_history
 

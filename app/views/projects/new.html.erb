@@ -1,2 +1,20 @@
 <h1>Projects#new</h1>
 <p>Find me in app/views/projects/new.html.erb</p>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <%= form_with model: @project, local: true do |form| %>
+    <div>
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter project name" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_field :description, class: "form-control form-control-lg", placeholder: "Enter project description" %>
+      </div>
+
+      <%= form.submit "Create Project", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

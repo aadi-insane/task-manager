@@ -1,0 +1,26 @@
+<h1>All Users</h1>
+<div class="m-5 p-2">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Sign up Date</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+            <tr>
+                <td><%= user.email %></td>
+                <td><%= user.role.capitalize %></td>
+                <td><%= user.created_at.strftime("%B %d, %Y") %></td>
+                <td>
+                <%= link_to "Show", user_path(user), class: "btn btn-sm btn-primary" %>          
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+

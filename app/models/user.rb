@@ -4,20 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # Relationships
   has_many :owned_projects, class_name: 'Project', foreign_key: 'owner_id', dependent: :destroy
   has_many :assigned_tasks, class_name: 'Task', foreign_key: 'assignee_id', dependent: :nullify
   
-  # Role enum as specified in Phase 2 of roadmap
   enum role: { admin: 0, manager: 1, member: 2 }
   
-  # Set default role and timezone
   after_initialize :set_defaults, if: :new_record?
   
   private
-  
-  def set_defaults
-    self.role ||= :member
-    self.time_zone ||= 'UTC'
-  end
+    def set_defaults
+      self.role ||= :member
+      self.time_zone ||= 'UTC'
+    end
 end

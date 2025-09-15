@@ -1,2 +1,28 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<p class="mb-3">
+  You are signed in as <strong><%= current_user.role.capitalize %></strong> : <%= current_user.email %>
+</p>
+<div class="m-5 p-2">
+    <table class="table table-bordered table-striped">
+        <thead class="table-light">
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @projects.each do |project| %>
+            <tr>
+                <td><%= project.name %></td>
+                <td><%= project.description %></td>
+                <td>
+                <!-- Replace 'some action' with actual buttons/links -->
+                <%= link_to "Edit", edit_project_path(project), class: "btn btn-sm btn-primary" %>
+                <%= link_to "Show", project_path(project), class: "btn btn-sm btn-primary" %>
+
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

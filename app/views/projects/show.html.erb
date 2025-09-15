@@ -1,2 +1,19 @@
 <h1>Projects#show</h1>
 <p>Find me in app/views/projects/show.html.erb</p>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="mb-3">
+    <label class="form-label fw-bold">Name:</label>
+    <p class="form-control-plaintext"><%= @project.name %></p>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">Description:</label>
+    <p class="form-control-plaintext"><%= @project.description %></p>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-bold">Owner:</label>
+    <p class="form-control-plaintext"><%= User.find(@project.owner_id).email %></p>
+  </div>
+</div>
