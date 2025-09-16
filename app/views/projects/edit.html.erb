@@ -1,2 +1,21 @@
-<h1>Projects#edit</h1>
-<p>Find me in app/views/projects/edit.html.erb</p>
+<div class="container my-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h1 class="h4 mb-0">Edit Project: <%= @project.name %></h1>
+    </div>
+    <div class="card-body">
+      <%= form_with model: @project do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, class: "form-label" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :description, class: "form-label" %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+        <%= f.submit "Update Project", class: "btn btn-primary" %>
+        <%= link_to "Cancel", project_path(@project), class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

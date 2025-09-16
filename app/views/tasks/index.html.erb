@@ -1,2 +1,34 @@
 <h1>Tasks#index</h1>
 <p>Find me in app/views/tasks/index.html.erb</p>
+
+<p class="mb-3">
+  You are signed in as <strong><%= current_user.role.capitalize %></strong> : <%= current_user.email %>
+</p>
+<div class="m-5 p-2">
+    <table class="table table-bordered table-striped">
+        <thead class="table-light">
+            <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Project</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Starts At</th>
+            <th scope="col">Due At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @tasks.each do |task| %>
+            <tr>
+                <td><%= task.title %></td>
+                <td><%= task.description %></td>
+                <td><%= task.project_id %></td>
+                <td><%= task.status %></td>
+                <td><%= task.priority %></td>
+                <td><%= task.starts_at.strftime('%d, %B %Y') %></td>
+                <td><%= task.due_at.strftime('%d, %B %Y') %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

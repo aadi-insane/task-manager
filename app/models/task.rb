@@ -10,19 +10,8 @@ class Task < ApplicationRecord
   has_many :predecessors, through: :predecessor_dependencies, source: :predecessor
   has_many :successors, through: :successor_dependencies, source: :successor
   
-  enum status: { not_started: 0, in_progress: 1, completed: 2, blocked: 3, cancelled: 4 }
-  
-  enum priority: { low: 0, medium: 1, high: 2, urgent: 3 }
+  enum :status, { not_started: 0, in_progress: 1, completed: 2, blocked: 3, cancelled: 4 }, default: :not_started, validate: true
+  enum :priority, { low: 0, medium: 1, high: 2, urgent: 3 }, default: :medium, validate: true
   
   validates :title, presence: true
-  validates :status, presence: true
-  validates :priority, presence: true
-  
-  after_initialize :set_defaults, if: :new_record?
-  
-  private
-    def set_defaults
-      self.status ||= :not_started
-      self.priority ||= :medium
-    end
 end

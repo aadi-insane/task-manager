@@ -1,2 +1,21 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class="card my-4 m-5 p-2">
+    <div class="card-header bg-primary text-white">
+        <h1 class="h4 mb-0">Task: <%= @task.title %></h1>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Description</h5>
+        <p class="card-text"><%= @task.description %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <strong>Project:</strong>
+            <%= @task.project_id %>,
+            <%= @task.project&.name %>
+        </li>
+        <li class="list-group-item"><strong>Assignee:</strong> <%= @task.assignee_id %></li>
+        <li class="list-group-item"><strong>Status:</strong> <%= @task.status %></li>
+        <li class="list-group-item"><strong>Priority:</strong> <%= @task.priority %></li>
+        <li class="list-group-item"><strong>Starts At:</strong> <%= @task.starts_at.strftime('%d, %B %Y') %></li>
+        <li class="list-group-item"><strong>Due At:</strong> <%= @task.due_at.strftime('%d, %B %Y') %></li>
+    </ul>
+</div>

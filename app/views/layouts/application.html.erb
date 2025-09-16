@@ -15,13 +15,9 @@
   <body>
     <%= render "partials/dashboard_navbar" %>
 
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-    
-    <%= yield %>
+    <main class="container mt-4">
+      <%= render "layouts/flash_messages" %>
+      <%= yield %>
+    </main>
   </body>
 </html>

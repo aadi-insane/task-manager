@@ -1,1 +1,28 @@
 <h1>Welcome to Task Manager.</h1>
+
+<% if user_signed_in? && (current_user.admin? || current_user.manager?) %>
+    <div class="m-5 p-2">
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Time Zone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.role %></td>
+                    <td><%= user.time_zone %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+<% end %>

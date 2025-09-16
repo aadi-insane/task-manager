@@ -1,2 +1,36 @@
 <h1>Tasks#new</h1>
 <p>Find me in app/views/tasks/new.html.erb</p>
+
+<div class="container mt-4" style="max-width: 600px;">
+  <%= form_with(model: [@project, @task]) do |form| %>
+    <div>
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class: "form-control form-control-lg", placeholder: "Enter project name" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_area :description, class: "form-control form-control-lg", placeholder: "Enter project description" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :assignee_id, class: "form-label" %>
+        <%= form.text_field :assignee_id, class: "form-control form-control-lg", placeholder: "Enter member ID" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :priority, class: "form-label" %>
+        <%= form.select :priority, ["low", "medium", "high", "urgent"], {}, { class: "form-select" } %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :due_at, class: "form-label" %>
+        <%= form.date_field :due_at, class: "form-control form-control-lg", placeholder: "Enter project due date" %>
+      </div>
+
+      <%= form.submit "Create Task", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+

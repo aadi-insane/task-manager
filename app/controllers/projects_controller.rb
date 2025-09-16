@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     if current_user.admin?
@@ -11,9 +11,14 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-    # Assuming Project has_many :tasks
-    @tasks = @project.tasks.includes(:assignee, :subtasks)
-    # You can preload associations to optimize queries
+    if current_user.admin?
+      @tasks = Task.where(project_id: params[:id])
+    else
+      # project_ids = Project.where(owner_id: current_user.id).pluck(:id)
+      @tasks = Task.where(project_id: params[:id]).includes(:assignee)
+    end
+
+    # @tasks = @project.tasks.includes(:assignee)
   end
 
   # GET /projects/new
@@ -34,6 +39,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects/:id/edit
   def edit
+    @tasks = @project.tasks.includes(:assignee, :subtasks)
   end
 
   # PATCH/PUT /projects/:id
